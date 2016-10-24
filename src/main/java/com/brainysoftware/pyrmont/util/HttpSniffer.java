@@ -95,7 +95,6 @@ public class HttpSniffer extends JFrame {
 
             try {
                 Socket socket = new Socket(host, portNumber);
-                OutputStream os = socket.getOutputStream();
                 boolean autoflush = true;
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), autoflush);
                 String message = command.getText();

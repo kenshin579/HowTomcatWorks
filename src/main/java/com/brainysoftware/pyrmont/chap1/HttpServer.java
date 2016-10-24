@@ -1,5 +1,8 @@
 package com.brainysoftware.pyrmont.chap1;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +12,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class HttpServer {
-
     /**
      * WEB_ROOT is the directory where our HTML and other files reside.
      * For this package, WEB_ROOT is the "webroot" directory under the working
@@ -19,7 +21,7 @@ public class HttpServer {
      */
     public static final String WEB_ROOT =
             System.getProperty("user.dir") + File.separator + "webroot";
-
+    private static final Logger LOG = LoggerFactory.getLogger(HttpServer.class);
     // shutdown command
     private static final String SHUTDOWN_COMMAND = "/SHUTDOWN";
 
@@ -27,6 +29,7 @@ public class HttpServer {
     private boolean shutdown = false;
 
     public static void main(String[] args) {
+        LOG.debug("user.dir: {} WEB_ROOT: {}", System.getProperty("user.dir"), WEB_ROOT);
         HttpServer server = new HttpServer();
         server.await();
     }

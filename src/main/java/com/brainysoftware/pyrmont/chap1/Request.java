@@ -1,9 +1,13 @@
 package com.brainysoftware.pyrmont.chap1;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 
 public class Request {
+    private static final Logger LOG = LoggerFactory.getLogger(Request.class);
 
     private InputStream input;
     private String uri;
@@ -26,10 +30,15 @@ public class Request {
         for (int j = 0; j < i; j++) {
             request.append((char) buffer[j]);
         }
-        System.out.print(request.toString());
+        LOG.info("{}", request.toString());
+        System.out.println(request.toString());
         uri = parseUri(request.toString());
     }
 
+    /*
+    HTTP 요청
+    GET /index.html HTTP/1.1
+     */
     private String parseUri(String requestString) {
         int index1, index2;
         index1 = requestString.indexOf(' ');
