@@ -61,7 +61,7 @@ public class HttpServer {
                 // create Response object
                 Response response = new Response(output);
                 response.setRequest(request);
-                response.sendStaticResource();
+                response.sendStaticResource(); //socket에 바로 쓰게 됨
 
                 // Close the socket
                 socket.close();
