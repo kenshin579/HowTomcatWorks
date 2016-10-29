@@ -56,6 +56,7 @@ public class Request implements ServletRequest {
             request.append((char) buffer[j]);
         }
         System.out.print(request.toString());
+        LOG.info("[FRANK] request.toString(): {}", request.toString());
         uri = parseUri(request.toString());
         LOG.info("[FRANK] URI : {}", uri);
     }

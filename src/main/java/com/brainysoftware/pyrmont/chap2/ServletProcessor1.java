@@ -27,9 +27,12 @@ public class ServletProcessor1 {
             URL[] urls = new URL[1];
             URLStreamHandler streamHandler = null;
             File classPath = new File(Constants.WEB_ROOT);
+
             // the forming of repository is taken from the createClassLoader method in
             // org.apache.catalina.startup.ClassLoaderFactory
             String repository = (new URL("file", null, classPath.getCanonicalPath() + File.separator)).toString();
+            LOG.info("repository: {}", repository);
+
             // the code for forming the URL is taken from the addRepository method in
             // org.apache.catalina.loader.StandardClassLoader class.
             urls[0] = new URL(null, repository, streamHandler);
@@ -39,7 +42,7 @@ public class ServletProcessor1 {
         }
         Class myClass = null;
         try {
-            myClass = loader.loadClass(servletName);
+            myClass = loader.loadClass(servletName); //note: servlet 클래스를 로드한다
         } catch (ClassNotFoundException e) {
             System.out.println(e.toString());
         }
@@ -47,8 +50,14 @@ public class ServletProcessor1 {
         Servlet servlet = null;
 
         try {
-            servlet = (Servlet) myClass.newInstance();
+            servlet = (Servlet) myClass.newInstance(); //instantiate해서 service() 메서드를 호출한다
+            /*
+            todo: 왜 upcasting을 해서 보냈나? 그냥 service(request, response)해서 보내도 이상없이 동작함
+
             servlet.service((ServletRequest) request, (ServletResponse) response);
+             */
+            servlet.service((ServletRequest) request, (ServletResponse) response);
+//            servlet.service(request, response);
         } catch (Exception e) {
             System.out.println(e.toString());
         } catch (Throwable e) {

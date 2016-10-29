@@ -1,5 +1,9 @@
 package com.brainysoftware.pyrmont.chap2;
 
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.ServletOutputStream;
 import javax.servlet.ServletResponse;
 import java.io.File;
@@ -13,6 +17,7 @@ import java.util.Locale;
 public class Response implements ServletResponse {
 
     private static final int BUFFER_SIZE = 1024;
+    private static Logger LOG = LoggerFactory.getLogger(Response.class);
     Request request;
     OutputStream output;
     PrintWriter writer;
