@@ -1,18 +1,23 @@
 package com.brainysoftware.pyrmont.chap2;
 
-import java.io.InputStream;
-import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletRequest;
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletRequest;
 
 
 public class Request implements ServletRequest {
+
+    private static Logger LOG = LoggerFactory.getLogger(Request.class);
 
     private InputStream input;
     private String uri;
@@ -52,6 +57,7 @@ public class Request implements ServletRequest {
         }
         System.out.print(request.toString());
         uri = parseUri(request.toString());
+        LOG.info("[FRANK] URI : {}", uri);
     }
 
     /* implementation of the ServletRequest*/

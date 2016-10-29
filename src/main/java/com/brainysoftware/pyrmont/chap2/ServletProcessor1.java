@@ -1,21 +1,26 @@
 package com.brainysoftware.pyrmont.chap2;
 
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.net.URLStreamHandler;
-import java.io.File;
-import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.Servlet;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.net.URLStreamHandler;
 
 public class ServletProcessor1 {
+    private static Logger LOG = LoggerFactory.getLogger(ServletProcessor1.class);
 
     public void process(Request request, Response response) {
-
         String uri = request.getUri();
         String servletName = uri.substring(uri.lastIndexOf("/") + 1);
         URLClassLoader loader = null;
+
+        LOG.info("uri:{}, servletName:{}", uri, servletName);
 
         try {
             // create a URLClassLoader

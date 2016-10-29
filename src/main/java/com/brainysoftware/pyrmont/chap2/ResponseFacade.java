@@ -1,10 +1,10 @@
 package com.brainysoftware.pyrmont.chap2;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
-import javax.servlet.ServletResponse;
-import javax.servlet.ServletOutputStream;
 
 public class ResponseFacade implements ServletResponse {
 
